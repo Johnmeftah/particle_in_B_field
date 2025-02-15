@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from scipy.integrate import solve_ivp
 
-# parameters
+# params
 q = 1.0      # charge of the particle
 B = 1.0      # magnetic field strength
 m = 1.0      # mass of the particle
@@ -12,7 +12,7 @@ b = 0.1      # drag coefficient
 omega = q * B / m  # cyclotron frequency
 lambda_ = b / m     # damping coefficient
 
-# equations of motion
+# eqs of motion
 def equations(t, y):
     vx, vy, vz, x, y, z = y
     dvx_dt = omega * vy - lambda_ * vx
@@ -27,7 +27,7 @@ def equations(t, y):
 vx0, vy0, vz0 = 1.0, 0.0, 1.0  # initial velocities
 x0, y0, z0 = 0.0, 0.0, 0.0      # initial positions
 
-# time span
+# t span
 t_span = (0, 50)
 t_eval = np.linspace(0, 50, 5000)  # time points for evaluation
 initial_conditions = [vx0, vy0, vz0, x0, y0, z0]
@@ -37,7 +37,7 @@ solution = solve_ivp(equations, t_span, initial_conditions, t_eval=t_eval)
 t = solution.t
 x, y, z = solution.y[3], solution.y[4], solution.y[5]
 
-# animation
+# animate
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111, projection='3d')
 ax.set_xlabel("X")
